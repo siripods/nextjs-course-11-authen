@@ -2,6 +2,12 @@ import { connectToDatabae } from "../../../lib/db";
 import { hashPassword } from "../../../lib/auth";
 
 async function handler(req, res) {
+  if (req.method != "POST") {
+    return;
+  }
+
+  console.log("signup.js handler");
+
   const data = req.body;
   const { email, password } = data;
 
@@ -16,15 +22,20 @@ async function handler(req, res) {
     });
     return;
   }
+
   const client = await connectToDatabae();
   const db = client.db();
-  const hashedPassword = hashPassword(password);
+  const hashedPassword = await hashPassword(password);
+  console.log("hashedPassword: ", hashedPassword);
   const result = await db.collection("users").insertOne({
     email: email,
     password: hashedPassword,
   });
+  console.log("Created user");
 
-  res.status(200).json({message: "Created user!"});
+  res.status(201).json({ message: "Created user!" });
+  //console.log("Result status 201");
+  return;
 }
 
 export default handler;
