@@ -25,6 +25,17 @@ async function handler(req, res) {
 
   const client = await connectToDatabae();
   const db = client.db();
+
+  const existingUser = await db.collection("users").findOne({
+    email: email,
+  });
+  console.log("existingUser: ", existingUser);
+  if (existingUser) {
+    res.status(422).json({ message: "User exists already!" });
+    client.close();
+    return;
+  }
+
   const hashedPassword = await hashPassword(password);
   console.log("hashedPassword: ", hashedPassword);
   const result = await db.collection("users").insertOne({
