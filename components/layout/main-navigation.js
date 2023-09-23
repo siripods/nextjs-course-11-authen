@@ -3,9 +3,9 @@ import classes from './main-navigation.module.css';
 import { useSession, signOut } from 'next-auth/react';
 
 function MainNavigation() {
-  
-//   The useSession() React Hook in the NextAuth.js client is the easiest way to check if someone is signed in.
-// Make sure that <SessionProvider> is added to pages/_app.js.
+
+  // The useSession() React Hook in the NextAuth.js client is the easiest way to check if someone is signed in.
+  // Make sure that <SessionProvider> is added to pages/_app.js.
   const { data: session, status } = useSession()
   console.log("status = ", status);
   console.log("session = ", session);
@@ -37,9 +37,9 @@ function MainNavigation() {
             </li>
           )}
           {session && (
-           <li>
-            <button onClick={logoutHandler}>Logout</button>
-          </li>
+            <li>
+              <button onClick={logoutHandler}>Logout</button>
+            </li>
           )}
         </ul>
       </nav>
