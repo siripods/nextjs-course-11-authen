@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import classes from "./auth-form.module.css";
-import { useRef } from "react";
+import { signIn } from "next-auth/react";
 
 async function createUser(email, password) {
   const response = await fetch("/api/auth/signup", {
@@ -40,6 +40,14 @@ function AuthForm() {
 
     if (isLogin) {
       //log user in
+      console.log("signing in ...")
+      const result = await signIn("credentails", {
+        redirect: false, //if redirect is false, signIn will return a promise which give us result
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+      //if no error, result will not have error information
+      console.log("result: ", result);
     } else {
       try {
         const result = await createUser(enteredEmail, enteredPassword);
