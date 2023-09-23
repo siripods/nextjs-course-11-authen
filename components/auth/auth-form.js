@@ -47,6 +47,10 @@ function AuthForm() {
         password: enteredPassword,
       });
       //if no error, result will not have error information
+      if(!result.error) {
+        // set some auth state
+        
+      }
       console.log("result: ", result);
     } else {
       try {
