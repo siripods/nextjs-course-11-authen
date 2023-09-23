@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import classes from './main-navigation.module.css';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 function MainNavigation() {
   
@@ -9,6 +9,13 @@ function MainNavigation() {
   const { data: session, status } = useSession()
   console.log("status = ", status);
   console.log("session = ", session);
+
+  //using useSession(), this component will be updated automatically as soon as active session changes
+  // and it will change when sign out
+  function logoutHandler() {
+    //cookie is cleared and information of active user is cleared
+    signOut();
+  }
 
   return (
     <header className={classes.header}>
@@ -31,7 +38,7 @@ function MainNavigation() {
           )}
           {session && (
            <li>
-            <button>Logout</button>
+            <button onClick={logoutHandler}>Logout</button>
           </li>
           )}
         </ul>
