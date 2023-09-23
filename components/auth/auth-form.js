@@ -41,7 +41,7 @@ function AuthForm() {
     if (isLogin) {
       //log user in
       console.log("signing in ...")
-      const result = await signIn("credentails", {
+      const result = await signIn("credentials", {
         redirect: false, //if redirect is false, signIn will return a promise which give us result
         email: enteredEmail,
         password: enteredPassword,
