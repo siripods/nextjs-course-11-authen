@@ -1,5 +1,4 @@
 import NextAuth from "next-auth/next";
-//import { Provider } from "next-auth/react";
 import { connectToDatabae } from "../../../lib/db";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from '../../../lib/auth';
