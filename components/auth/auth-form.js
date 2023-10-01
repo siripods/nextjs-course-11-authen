@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import classes from "./auth-form.module.css";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 async function createUser(email, password) {
   const response = await fetch("/api/auth/signup", {
@@ -24,6 +25,7 @@ function AuthForm() {
   const passwordInputRef = useRef();
 
   const [isLogin, setIsLogin] = useState(true);
+  const router = useRouter();
 
   function switchAuthModeHandler() {
     setIsLogin((prevState) => !prevState);
@@ -47,9 +49,9 @@ function AuthForm() {
         password: enteredPassword,
       });
       //if no error, result will not have error information
-      if(!result.error) {
-        // set some auth state
-        
+      if (!result.error) {
+        // set some auth state, such as menu after login
+        router.replace("/profile");
       }
       console.log("result: ", result);
     } else {

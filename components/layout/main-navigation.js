@@ -7,8 +7,8 @@ function MainNavigation() {
   // The useSession() React Hook in the NextAuth.js client is the easiest way to check if someone is signed in.
   // Make sure that <SessionProvider> is added to pages/_app.js.
   const { data: session, status } = useSession()
-  console.log("status = ", status);
-  console.log("session = ", session);
+  console.log("MainNavigation status = ", status);
+  console.log("MainNavigation session = ", session);
 
   //using useSession(), this component will be updated automatically as soon as active session changes
   // and it will change when sign out

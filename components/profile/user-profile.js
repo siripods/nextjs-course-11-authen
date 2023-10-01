@@ -21,6 +21,7 @@ function UserProfile() {
   // console.log("isLoading = ", isLoading);
 
   // if (isLoading) {
+    // there will be brief moment that the page shows message "Loading ...."
   //   return <p className={classes.profile}>Loading...</p>
   // }
   

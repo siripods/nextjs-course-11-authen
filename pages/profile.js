@@ -6,9 +6,11 @@ function ProfilePage() {
 }
 
 export async function getServerSideProps(context) {
+  //getSession() can be used on server-side also
   const session = await getSession({ req: context.req });
 
   if (!session) {
+    //if no session, then redirect to auth page
     return {
       redirect: {
         destination: "/auth",
@@ -18,7 +20,7 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { session},
+    props: { session },
   }
 }
 
