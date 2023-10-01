@@ -1,4 +1,4 @@
-import { connectToDatabae } from "../../../lib/db";
+import { connectToDatabase } from "../../../lib/db";
 import { hashPassword } from "../../../lib/auth";
 
 async function handler(req, res) {
@@ -23,7 +23,7 @@ async function handler(req, res) {
     return;
   }
 
-  const client = await connectToDatabae();
+  const client = await connectToDatabase();
   const db = client.db();
 
   const existingUser = await db.collection("users").findOne({
